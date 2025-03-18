@@ -2,7 +2,10 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "master",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -14,7 +17,9 @@
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
   "nxCloudId": "67d37603d85eaf278aed877f",
   "plugins": [
@@ -46,11 +51,29 @@
         "componentTestingTargetName": "component-test",
         "ciTargetName": "e2e-ci"
       }
+    },
+    {
+      "plugin": "@nxrocks/nx-spring-boot",
+      "options": {
+        "buildTargetName": "build",
+        "installTargetName": "install",
+        "testTargetName": "test",
+        "cleanTargetName": "clean",
+        "formatTargetName": "format",
+        "applyFormatTargetName": "apply-format",
+        "checkFormatTargetName": "check-format",
+        "runTargetName": "run",
+        "serveTargetName": "serve",
+        "buildImageTargetName": "build-image",
+        "buildInfoTargetName": "build-info"
+      }
     }
   ],
   "targetDefaults": {
     "e2e-ci--**/*": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     }
   },
   "generators": {

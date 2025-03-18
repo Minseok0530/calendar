@@ -1,11 +1,9 @@
-import NxWelcome from './nx-welcome';
+// import SideBar from '../components/side-bar';
+
+import Router from './router';
 
 export function App() {
-  return (
-    <div>
-      <NxWelcome title="front/" />
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;
