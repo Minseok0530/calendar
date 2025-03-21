@@ -1,6 +1,6 @@
 import { Button, SegmentedControl } from '@radix-ui/themes';
 import CalenderComponent from '../../../components/calender-component';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PlusIcon } from '@radix-ui/react-icons';
 import dayjs, { Dayjs } from 'dayjs';
 import Clock from '../../../components/clock';
@@ -31,14 +31,21 @@ function ListBoxComponent({
 export default function Calender() {
   const [currentSelect, setCurrentSelect] = useState<'today' | 'week'>('today');
   const [eventData, setEventData] = useState<
-    { name: string; location: string; value: string }[]
+    { name: string; location: string; value: number }[]
   >([]);
+
+  useEffect(() => {
+    setEventData([
+      { location: '위치 1', name: '이름 1', value: 1 },
+      { location: '위치 2', name: '이름 2', value: 2 },
+    ]);
+  }, []);
 
   return (
     <div className="w-full">
       <div className="flex">
         <CalenderComponent />
-        <div className="border my-2 mx-2 w-[20%] p-2">
+        <div className="border mt-2 mx-2 w-[20%] p-2">
           <Clock />
           <Button style={{ width: '100%', backgroundColor: 'black' }}>
             <PlusIcon />새 일정
@@ -59,13 +66,10 @@ export default function Calender() {
             </SegmentedControl.Root>
           </div>
           <div className="mt-5">
-            {[
-              { locate: '위치 1', name: '이름 1' },
-              { locate: '위치 2', name: '이름 2' },
-            ].map((o) => {
+            {eventData.map((o) => {
               return (
                 <ListBoxComponent
-                  eventLocation={o.locate}
+                  eventLocation={o.location}
                   eventName={o.name}
                   eventTime={dayjs()}
                 />
